@@ -1,0 +1,34 @@
+
+namespace FBtest;
+// The request message containing the user's name.
+table HelloRequest {
+  name:string;
+}
+
+// The response message containing the greetings.
+table HelloReply {
+  message:string;
+  success:bool;
+}
+
+struct Vector3 {
+  x:float;
+  y:float;
+  z:float;
+}
+
+table MovementData{
+  name:string;
+  coords:Vector3;
+	
+}
+table MovementDataReply{
+  name:string;
+  coords:Vector3;
+}
+
+rpc_service Greeter {
+  SayHello(HelloRequest): HelloReply;
+  SyncMovement (MovementData):MovementDataReply(streaming: "server");
+  Move (MovementData): MovementDataReply;
+}

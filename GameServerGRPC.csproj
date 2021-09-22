@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FlatSharp" Version="5.5.0" />
+    <PackageReference Include="FlatSharp.Compiler" Version="5.5.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <GeneratePathProperty>true</GeneratePathProperty>
+    </PackageReference>
+    <PackageReference Include="FlatSharp.Runtime" Version="5.5.0" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.36.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.13.0-beta1" />
+  </ItemGroup>
+  <ItemGroup>
+        <PropertyPageSchema Include="$(MSBuildThisFileDirectory)flatbuffers.xml" />
+        <AvailableItemName Include="Flatbuffer">
+            <Targets>Flatbuffers</Targets>
+        </AvailableItemName>
+    </ItemGroup>
+  <ItemGroup>
+    <Protobuf Include="**/*.proto" GrpcServices="Server" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Protos\test.fbs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Flatbuffer Include="Protos\test.fbs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="FlatBuffers">
+      <HintPath>..\..\..\Desktop\flatc\FlatBuffers.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+    
+</Project>
